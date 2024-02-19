@@ -1,13 +1,10 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+import joblib
 
 # Load the datasets
 features_df = pd.read_csv('C:\\Hack\\training_set_features.csv')
@@ -25,6 +22,9 @@ categorical_cols = features_df.select_dtypes(include=['object']).columns
 one_hot_encoder = OneHotEncoder(drop='first')
 ct = ColumnTransformer(transformers=[('encoder', one_hot_encoder, categorical_cols)], remainder='passthrough')
 X_encoded = ct.fit_transform(features_df)
+
+# Save the transformer object
+joblib.dump(ct, 'transformer.pkl')
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X_encoded, labels_df['h1n1_vaccine'], test_size=0.2, random_state=42)
@@ -50,6 +50,3 @@ plt.figure(figsize=(10, 5))
 sns.countplot(data=labels_df, x="seasonal_vaccine", hue="seasonal_vaccine", palette="Set2", legend=False)
 plt.title("Distribution of Seasonal Vaccine")
 plt.show()
-
-
-# 
