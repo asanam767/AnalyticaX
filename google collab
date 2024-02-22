@@ -1,0 +1,286 @@
+
+from google.colab import drivedrive.mount('/content/drive')
+from google.colab import drive
+drive.mount('/content/drive')
+Mounted at /content/drive
+!pip install pandas_profilin
+ Downloading phik-0.12.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (686 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 686.1/686.1 kB 8.4 MB/s eta 0:00:00
+Requirement already satisfied: requests<3,>=2.24.0 in /usr/local/lib/python3.10/dist-packages (from ydata-profiling->pandas_profiling) (2.31.0)
+Requirement already satisfied: tqdm<5,>=4.48.2 in /usr/local/lib/python3.10/dist-packages (from ydata-profiling->pandas_profiling) (4.66.2)
+Collecting seaborn<0.13,>=0.10.1 (from ydata-profiling->pandas_profiling)
+  Downloading seaborn-0.12.2-py3-none-any.whl (293 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 293.3/293.3 kB 10.8 MB/s eta 0:00:00
+Collecting multimethod<2,>=1.4 (from ydata-profiling->pandas_profiling)
+  Downloading multimethod-1.11.1-py3-none-any.whl (10 kB)
+Requirement already satisfied: statsmodels<1,>=0.13.2 in /usr/local/lib/python3.10/dist-packages (from ydata-profiling->pandas_profiling) (0.14.1)
+Collecting typeguard<5,>=4.1.2 (from ydata-profiling->pandas_profiling)
+  Downloading typeguard-4.1.5-py3-none-any.whl (34 kB)
+Collecting imagehash==4.3.1 (from ydata-profiling->pandas_profiling)
+  Downloading ImageHash-4.3.1-py2.py3-none-any.whl (296 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 296.5/296.5 kB 12.2 MB/s eta 0:00:00
+Requirement already satisfied: wordcloud>=1.9.1 in /usr/local/lib/python3.10/dist-packages (from ydata-profiling->pandas_profiling) (1.9.3)
+Collecting dacite>=1.8 (from ydata-profiling->pandas_profiling)
+  Downloading dacite-1.8.1-py3-none-any.whl (14 kB)
+Requirement already satisfied: numba<0.59.0,>=0.56.0 in /usr/local/lib/python3.10/dist-packages (from ydata-profiling->pandas_profiling) (0.58.1)
+Requirement already satisfied: PyWavelets in /usr/local/lib/python3.10/dist-packages (from imagehash==4.3.1->ydata-profiling->pandas_profiling) (1.5.0)
+Requirement already satisfied: pillow in /usr/local/lib/python3.10/dist-packages (from imagehash==4.3.1->ydata-profiling->pandas_profiling) (9.4.0)
+Requirement already satisfied: attrs>=19.3.0 in /usr/local/lib/python3.10/dist-packages (from visions[type_image_path]==0.7.5->ydata-profiling->pandas_profiling) (23.2.0)
+Requirement already satisfied: networkx>=2.4 in /usr/local/lib/python3.10/dist-packages (from visions[type_image_path]==0.7.5->ydata-profiling->pandas_profiling) (3.2.1)
+Collecting tangled-up-in-unicode>=0.0.4 (from visions[type_image_path]==0.7.5->ydata-profiling->pandas_profiling)
+  Downloading tangled_up_in_unicode-0.2.0-py3-none-any.whl (4.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 20.5 MB/s eta 0:00:00
+Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2<3.2,>=2.11.1->ydata-profiling->pandas_profiling) (2.1.5)
+Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (1.2.0)
+Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (0.12.1)
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (4.49.0)
+Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (1.4.5)
+Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (23.2)
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (3.1.1)
+Requirement already satisfied: python-dateutil>=2.7 in /usr/local/lib/python3.10/dist-packages (from matplotlib<3.9,>=3.2->ydata-profiling->pandas_profiling) (2.8.2)
+Requirement already satisfied: llvmlite<0.42,>=0.41.0dev0 in /usr/local/lib/python3.10/dist-packages (from numba<0.59.0,>=0.56.0->ydata-profiling->pandas_profiling) (0.41.1)
+Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas!=1.4.0,<3,>1.1->ydata-profiling->pandas_profiling) (2023.4)
+Requirement already satisfied: joblib>=0.14.1 in /usr/local/lib/python3.10/dist-packages (from phik<0.13,>=0.11.1->ydata-profiling->pandas_profiling) (1.3.2)
+Requirement already satisfied: annotated-types>=0.4.0 in /usr/local/lib/python3.10/dist-packages (from pydantic>=2->ydata-profiling->pandas_profiling) (0.6.0)
+Requirement already satisfied: pydantic-core==2.16.2 in /usr/local/lib/python3.10/dist-packages (from pydantic>=2->ydata-profiling->pandas_profiling) (2.16.2)
+Requirement already satisfied: typing-extensions>=4.6.1 in /usr/local/lib/python3.10/dist-packages (from pydantic>=2->ydata-profiling->pandas_profiling) (4.9.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.24.0->ydata-profiling->pandas_profiling) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.24.0->ydata-profiling->pandas_profiling) (3.6)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.24.0->ydata-profiling->pandas_profiling) (2.0.7)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests<3,>=2.24.0->ydata-profiling->pandas_profiling) (2024.2.2)
+Requirement already satisfied: patsy>=0.5.4 in /usr/local/lib/python3.10/dist-packages (from statsmodels<1,>=0.13.2->ydata-profiling->pandas_profiling) (0.5.6)
+Requirement already satisfied: six in /usr/local/lib/python3.10/dist-packages (from patsy>=0.5.4->statsmodels<1,>=0.13.2->ydata-profiling->pandas_profiling) (1.16.0)
+Building wheels for collected packages: htmlmin
+  Building wheel for htmlmin (setup.py) ... done
+  Created wheel for htmlmin: filename=htmlmin-0.1.12-py3-none-any.whl size=27081 sha256=ca1e6c161debc1bad72429312e6bd32bc89f56445cc71d502b7e9cddc28e38a7
+  Stored in directory: /root/.cache/pip/wheels/dd/91/29/a79cecb328d01739e64017b6fb9a1ab9d8cb1853098ec5966d
+Successfully built htmlmin
+Installing collected packages: htmlmin, typeguard, tangled-up-in-unicode, multimethod, dacite, imagehash, visions, seaborn, phik, ydata-profiling, pandas_profiling
+  Attempting uninstall: seaborn
+    Found existing installation: seaborn 0.13.1
+    Uninstalling seaborn-0.13.1:
+      Successfully uninstalled seaborn-0.13.1
+Successfully installed dacite-1.8.1 htmlmin-0.1.12 imagehash-4.3.1 multimethod-1.11.1 pandas_profiling-3.6.6 phik-0.12.4 seaborn-0.12.2 tangled-up-in-unicode-0.2.0 typeguard-4.1.5 visions-0.7.5 ydata-profiling-4.6.4
+[ ]
+import pandas as pd
+import matplotlib.pyplot as plt
+import pickle
+import numpy as np
+[ ]
+from ydata_profiling import ProfileReport
+[ ]
+features_df = pd.read_csv("/content/drive/MyDrive/Hackathon/training_set_features.csv")
+labels_df = pd.read_csv("/content/drive/MyDrive/Hackathon/training_set_labels.csv")
+[ ]
+merged_df = pd.merge(features_df, labels_df, on="respondent_id")
+[ ]
+merged_df.dtypes
+respondent_id                    int64
+h1n1_concern                   float64
+h1n1_knowledge                 float64
+behavioral_antiviral_meds      float64
+behavioral_avoidance           float64
+behavioral_face_mask           float64
+behavioral_wash_hands          float64
+behavioral_large_gatherings    float64
+behavioral_outside_home        float64
+behavioral_touch_face          float64
+doctor_recc_h1n1               float64
+doctor_recc_seasonal           float64
+chronic_med_condition          float64
+child_under_6_months           float64
+health_worker                  float64
+health_insurance               float64
+opinion_h1n1_vacc_effective    float64
+opinion_h1n1_risk              float64
+opinion_h1n1_sick_from_vacc    float64
+opinion_seas_vacc_effective    float64
+opinion_seas_risk              float64
+opinion_seas_sick_from_vacc    float64
+age_group                       object
+education                       object
+race                            object
+sex                             object
+income_poverty                  object
+marital_status                  object
+rent_or_own                     object
+employment_status               object
+hhs_geo_region                  object
+census_msa                      object
+household_adults               float64
+household_children             float64
+employment_industry             object
+employment_occupation           object
+h1n1_vaccine                     int64
+seasonal_vaccine                 int64
+dtype: object
+[ ]
+merged_df.isnull().sum()
+54932
+[ ]
+merged_df.drop_duplicates(inplace=True)
+[ ]
+# Replace missing values with the mode of the column
+#1st column
+merged_df['h1n1_concern'].fillna(merged_df['h1n1_concern'].mode()[0], inplace=True)
+
+[ ]
+#2nd column
+merged_df['h1n1_knowledge'].fillna(merged_df['h1n1_knowledge'].mode()[0], inplace=True)
+[ ]
+#3rd column
+merged_df['behavioral_antiviral_meds'].fillna(merged_df['behavioral_antiviral_meds'].mode()[0], inplace=True)
+[ ]
+ #4th column
+ merged_df['behavioral_avoidance'].fillna(merged_df['behavioral_avoidance'].mode()[0], inplace=True)
+[ ]
+#5th column
+merged_df['behavioral_face_mask'].fillna(merged_df['behavioral_face_mask'].mode()[0], inplace=True)
+[ ]
+#6th column
+merged_df['behavioral_wash_hands'].fillna(merged_df['behavioral_wash_hands'].mode()[0], inplace=True)
+[ ]
+#7th column
+merged_df['behavioral_large_gatherings'].fillna(merged_df['behavioral_large_gatherings'].mode()[0], inplace=True)
+[ ]
+#8th column
+merged_df['behavioral_outside_home'].fillna(merged_df['behavioral_outside_home'].mode()[0], inplace=True)
+[ ]
+#9th column
+merged_df['behavioral_touch_face'].fillna(merged_df['behavioral_touch_face'].mode()[0], inplace=True)
+[ ]
+#10th column
+merged_df['doctor_recc_h1n1'].fillna(merged_df['doctor_recc_h1n1'].mode()[0], inplace=True)
+[ ]
+#11th column
+merged_df['doctor_recc_seasonal'].fillna(merged_df['doctor_recc_seasonal'].mode()[0], inplace=True)
+[ ]
+#12th column
+merged_df['chronic_med_condition'].fillna(merged_df['chronic_med_condition'].mode()[0], inplace=True)
+[ ]
+#13th column
+merged_df['child_under_6_months'].fillna(merged_df['child_under_6_months'].mode()[0], inplace=True)
+[ ]
+#14th column
+merged_df['health_worker'].fillna(merged_df['health_worker'].mode()[0], inplace=True)
+[ ]
+#15th column
+merged_df['health_insurance'].fillna(merged_df['health_insurance'].mode()[0], inplace=True)
+[ ]
+#16th column
+merged_df['opinion_h1n1_vacc_effective'].fillna(merged_df['opinion_h1n1_vacc_effective'].mode()[0], inplace=True)
+[ ]
+#17th column
+merged_df['opinion_h1n1_risk'].fillna(merged_df['opinion_h1n1_risk'].mode()[0], inplace=True)
+[ ]
+#18th column
+merged_df['opinion_h1n1_sick_from_vacc'].fillna(merged_df['opinion_h1n1_sick_from_vacc'].mode()[0], inplace=True)
+[ ]
+#19th column
+merged_df['opinion_seas_vacc_effective'].fillna(merged_df['opinion_seas_vacc_effective'].mode()[0], inplace=True)
+[ ]
+#20th column
+merged_df['opinion_seas_risk'].fillna(merged_df['opinion_seas_risk'].mode()[0], inplace=True)
+[ ]
+#21th column
+merged_df['opinion_seas_sick_from_vacc'].fillna(merged_df['opinion_seas_sick_from_vacc'].mode()[0], inplace=True)
+[ ]
+import re
+[ ]
+cal=sum([int(x) for x in re.findall('\d+','55 - 64 Years')])/2
+merged_df['age_group'].replace('55 - 64 Years',cal, inplace=True)
+
+cal=sum([int(x) for x in re.findall('\d+','45 - 54 Years')])/2
+merged_df['age_group'].replace('45 - 54 Years',cal, inplace=True)
+
+cal=sum([int(x) for x in re.findall('\d+','18 - 34 Years')])/2
+merged_df['age_group'].replace('18 - 34 Years',cal, inplace=True)
+
+cal=sum([int(x) for x in re.findall('\d+','35 - 44 Years')])/2
+merged_df['age_group'].replace('35 - 44 Years',cal, inplace=True)
+
+merged_df['age_group'] = merged_df['age_group'].replace('65+ Years', 65)
+[ ]
+merged_df['age_group'] = merged_df['age_group'].astype(int)
+[ ]
+#education
+[ ]
+#race NO cahnges required
+[ ]
+# Define the mapping dictionary
+income_mapping = {
+    '<= $75,000': 75000,
+    'Above Poverty': 100000,  # You can choose an appropriate value for this category
+    '> $75,000': 75000,
+    'Below Poverty': 25000  # You can choose an appropriate value for this category
+}
+
+# Replace the values in the 'income_poverty' column using the mapping
+merged_df['income_poverty'] = merged_df['income_poverty'].map(income_mapping)
+
+[ ]
+#income_poverty
+mode_income_poverty = merged_df['income_poverty'].mode()[0]
+merged_df['income_poverty'].fillna(mode_income_poverty, inplace=True)
+[ ]
+#marital sttus
+mode_marital_status = merged_df['marital_status'].mode()[0]
+merged_df['marital_status'].fillna(mode_marital_status, inplace=True)
+[ ]
+#rent_own
+mode_rent_or_own = merged_df['rent_or_own'].mode()[0]
+merged_df['rent_or_own'].fillna(mode_rent_or_own, inplace=True)
+
+[ ]
+#employement status
+merged_df['employment_status'].fillna('Unknown', inplace=True)
+[ ]
+#household_adults
+median_household_adults = merged_df['household_adults'].median()
+merged_df['household_adults'].fillna(median_household_adults, inplace=True)
+
+[ ]
+#household_children
+median_household_children = merged_df['household_children'].median()
+merged_df['household_children'].fillna(median_household_children, inplace=True)
+[ ]
+#employment_industry
+mode_employment_industry = merged_df['employment_industry'].mode()[0]
+merged_df['employment_industry'].fillna(mode_employment_industry, inplace=True)
+[ ]
+#employment_occupation
+mode_employment_occupation = merged_df['employment_occupation'].mode()[0]
+merged_df['employment_occupation'].fillna(mode_employment_occupation, inplace=True)
+[ ]
+merged_df['employment_occupation'].isna().sum()
+0
+[ ]
+merged_df.to_csv('finaldataset.csv', index=False)
+[ ]
+X_h1n1 = merged_df[['h1n1_concern', 'h1n1_knowledge', 'behavioral_antiviral_meds',
+                    'behavioral_avoidance', 'behavioral_face_mask', 'behavioral_wash_hands',
+                    'behavioral_large_gatherings', 'behavioral_outside_home', 'behavioral_touch_face',
+                    'doctor_recc_h1n1', 'chronic_med_condition', 'child_under_6_months',
+                    'health_worker', 'health_insurance', 'opinion_h1n1_vacc_effective',
+                    'opinion_h1n1_risk', 'opinion_h1n1_sick_from_vacc', 'age_group',
+                     'race', 'sex', 'income_poverty', 'marital_status',
+                    'rent_or_own', 'employment_status', 'hhs_geo_region', 'census_msa',
+                    'household_adults', 'household_children', 'employment_industry',
+                    'employment_occupation']]
+[ ]
+
+X_seasonal = merged_df[['h1n1_concern', 'h1n1_knowledge', 'behavioral_antiviral_meds',
+                        'behavioral_avoidance', 'behavioral_face_mask', 'behavioral_wash_hands',
+                        'behavioral_large_gatherings', 'behavioral_outside_home', 'behavioral_touch_face',
+                        'doctor_recc_seasonal', 'chronic_med_condition', 'child_under_6_months',
+                        'health_worker', 'health_insurance', 'opinion_seas_vacc_effective',
+                        'opinion_seas_risk', 'opinion_seas_sick_from_vacc', 'age_group',
+                         'race', 'sex', 'income_poverty', 'marital_status',
+                        'rent_or_own', 'employment_status', 'hhs_geo_region', 'census_msa',
+                        'household_adults', 'household_children', 'employment_industry',
+                        'employment_occupation']]
+[ ]
+y_h1n1 = merged_df['h1n1_vaccine']
+y_seasonal = merged_df['seasonal_vaccine']
+from sklearn.linear_model import LinearRegression linear=LinearRegression() linear.fit(X_h1n1,y_h1n1)
+
