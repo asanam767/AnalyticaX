@@ -1,10 +1,11 @@
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import OneHotEncoder, ColumnTransformer  # Add this import statement
 
 import joblib
 
